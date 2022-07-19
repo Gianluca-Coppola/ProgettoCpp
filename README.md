@@ -15,9 +15,18 @@ nodi nel grafo (_sizeN) e un’altra per il numero di archi (_sizeE), ed una var
 indica il funtore Equal.
 
 Oltre i metodi richiesti dalla classe ho scelto di implementare tre metodi ausiliari:
-1. Init(size)
-2. Reset()
-3. Find(node)
+1. Init(size):
+Mi permette di inizalizzare un grafo di dimensione data, e allocare la memoria
+richiesta. Crea un array _nodes di dimensione size, setta il contatore di nodi _sizeN a
+size e inoltre si occupa di settare la matrice d’adiacenza a false e il contatore di archi
+_sizeE a 0.
+2. Reset():
+Questo metodo si occupa di deallocare tutta la memoria allocata per il grafo, e
+impostare le variabili a default. Effettivamente è ciò che farebbe il distruttore, e per
+questo nel metodo distruttore mi limiterò a chiamare questo metodo di reset.
+3. Find(node):
+Questo metodo serve a trovare l’indice nell’array _nodes di un determinato nodo.
+Ritornerà -1 se il nodo non è stato trovato.
 
 La classe grafo implementa i 4 Metodi fondamentali, ovvero il Costruttore di default che
 crea un grafo vuoto, il Copy Constructor che mi permette di instanziare un grafo
