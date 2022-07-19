@@ -3,28 +3,28 @@
 Il progetto richiede la realizzazione di un grafo orientato, i cui nodi sono rappresentati da
 un generico identificativo.
 
-Ho deciso di rappresentare i nodi con un array _nodes di tipo generico T, e quindi per
+Ho deciso di rappresentare i nodi con un array *_nodes* di tipo generico T, e quindi per
 effettuare il confronto tra due tipi T ho definito un funtore Equal.
 Il funtore deve implementare un operator() const per permettermi di confrontare i tipi
 generici di dato T.
 
-Gli archi del grafo sono implementati da una matrice bidimensionale _edges di boolean, che
+Gli archi del grafo sono implementati da una matrice bidimensionale *_edges* di boolean, che
 rappresenta la matrice d’adiacenza del grafo.
 Ho anche scelto di implementare due variabili unsigned int, una per conoscere il numero di
-nodi nel grafo (_sizeN) e un’altra per il numero di archi (_sizeE), ed una variabile _eq che
+nodi nel grafo (*_sizeN*) e un’altra per il numero di archi (*_sizeE*), ed una variabile *_eq* che
 indica il funtore Equal.
 
 Oltre i metodi richiesti dalla classe ho scelto di implementare tre metodi ausiliari:
-1. Init(size):
+1. **Init(size)**:
 Mi permette di inizalizzare un grafo di dimensione data, e allocare la memoria
 richiesta. Crea un array _nodes di dimensione size, setta il contatore di nodi _sizeN a
 size e inoltre si occupa di settare la matrice d’adiacenza a false e il contatore di archi
-_sizeE a 0.
-2. Reset():
+*_sizeE* a 0.
+2. **Reset()**:
 Questo metodo si occupa di deallocare tutta la memoria allocata per il grafo, e
 impostare le variabili a default. Effettivamente è ciò che farebbe il distruttore, e per
 questo nel metodo distruttore mi limiterò a chiamare questo metodo di reset.
-3. Find(node):
+3. **Find(node)**:
 Questo metodo serve a trovare l’indice nell’array _nodes di un determinato nodo.
 Ritornerà -1 se il nodo non è stato trovato.
 
@@ -39,15 +39,15 @@ questa stampa è richiesto il flag C_DEBUG durante la compilazione del file.
 
 Per gestire i vari problemi risultanti da input errati nei metodi add_node, remove_node,
 add_edge e remove_edge ho deciso di implementare due Eccezioni custom,
-DuplicateNodeException per l’aggiunta di nodi già esistenti e NonExistentNodeException
+*DuplicateNodeException* per l’aggiunta di nodi già esistenti e *NonExistentNodeException*
 per le operazioni su nodi non esistenti. Nei metodi add_node e remove_node è presente un
 blocco try-catch per evitare di modificare il grafo in caso di un lancio di eccezione.
 
-I metodi add_node e remove_node agiscono in modo simile: spostano il grafo su una
+I metodi **add_node** e **remove_node** agiscono in modo simile: spostano il grafo su una
 variabile temporanea tmp, resettano il grafo, e vanno a ricopiare il grafo tmp su un nuovo
 grafo, aggiungendo o rimuovendo il nodo passato come parametro a seconda del metodo
 usato.
-I metodi add_edge e remove_edge, dopo essersi accertati di operare su nodi validi,
+I metodi **add_edge** e **remove_edge**, dopo essersi accertati di operare su nodi validi,
 andranno ad aggiungere o rimuovere un arco su di essi.
 
 La classe implementa inoltre un const_iterator di tipo forward, che itera sugli identificativi
@@ -90,13 +90,13 @@ Il pulsante risolvi imposta tutte le QLineEdit readOnly, se contengono un dato �
 a scriverlo nella matrice _sudo, altrimenti imposto la QLineEdit con colore rosso per
 distinguere i dati “Fixed” dalle soluzioni.
 
-Prima di iniziare con l’algoritmo backtracking per la risoluzione ( solve() ) controllo che i dati
+Prima di iniziare con l’algoritmo backtracking per la risoluzione ( **solve()** ) controllo che i dati
 inseriti dall’utente siano validi, e ritorno un messaggio di errore se non lo sono.
-Per effettuare questo controllo ho scritto la funzione isValid(int digit, unsigned int row,
-unsigned int col). La funzione mi dice se il valore è già presente in quella riga, colonna o nel
+Per effettuare questo controllo ho scritto la funzione **isValid(int digit, unsigned int row,
+unsigned int col)**. La funzione mi dice se il valore è già presente in quella riga, colonna o nel
 suo box 3x3.
 
-Dopodichè procedo con l’algoritmo ricorsivo solve(): L’algoritmo prova ad inserire in ogni
+Dopodichè procedo con l’algoritmo ricorsivo **solve()**: L’algoritmo prova ad inserire in ogni
 cella che non sia “fixed” un numero a partire da 1, controllando che sia valido e procedendo
 ricorsivamente sulla cella successiva. Se il numero non è valido, procedo con il successivo,
 fino a 9. Se tutti i valori da 1 a 9 non sarano validi in una cella, l’algoritmo uscirà dal for e
